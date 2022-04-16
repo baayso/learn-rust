@@ -1,13 +1,5 @@
-use std::collections::{HashMap, HashSet};
-
 fn main() {
     println!("Hello World!");
-
-    let mut map: HashMap<&str, String> = HashMap::new();
-    map.insert("hello", String::from("world"));
-
-    let mut set: HashSet<u32> = HashSet::new();
-    set.insert(22);
 
     let val = 99u8; // byte
     match val {
