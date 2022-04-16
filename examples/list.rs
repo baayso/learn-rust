@@ -17,10 +17,15 @@ fn main() {
     let x1 = &list[2];
     println!("{}", x1);
 
-    match list.get(100) {
-        Some(item) => println!("{}", item),
-        None => println!("not found"),
-    }
+    let val = match list.get(100) {
+        Some(item) => *item,
+        None => {
+            println!("not found");
+            -1
+        }
+    };
+
+    println!("{}", val);
 
     let mut list2 = Vec::new();
     list2.push(1);

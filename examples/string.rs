@@ -41,10 +41,15 @@ fn main() {
 
     let w: String = "中国China".to_string();
 
-    match w.get(0..=5) {
-        Some(str) => println!("{}", str),
-        None => println!("不是有效的字符"),
-    }
+    let str = match w.get(0..=5) {
+        Some(str) => str,
+        None => {
+            println!("不是有效的字符");
+            ""
+        }
+    };
+
+    println!("{}", str);
 
     // 第三方库 https://crates.io/crates/substring
     let str: &str = w.substring(0, 1);
