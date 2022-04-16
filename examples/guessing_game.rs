@@ -2,6 +2,24 @@ use rand::Rng;
 use std::cmp::Ordering;
 use std::io;
 
+pub struct Guess {
+    value: i32,
+}
+
+impl Guess {
+    pub fn new(value: i32) -> Guess {
+        if value < 1 || value > 100 {
+            panic!("Guess value must be between 1 and 100, got {}.", value);
+        }
+
+        Guess { value }
+    }
+
+    pub fn value(&self) -> i32 {
+        self.value
+    }
+}
+
 fn main() {
     println!("Guess the number!");
 
@@ -12,14 +30,14 @@ fn main() {
     loop {
         println!("\nPlease input your guess:");
 
-        let mut guess = String::new();
+        let mut number = String::new();
 
         io::stdin()
-            .read_line(&mut guess)
+            .read_line(&mut number)
             .expect("Failed to read line.");
 
-        // guess.trim().parse().expect("Please type a number!");
-        let guess: u32 = match guess.trim().parse() {
+        // number.trim().parse().expect("Please type a number!");
+        let value: i32 = match number.trim().parse() {
             Ok(num) => num,
             Err(_) => {
                 println!("Please type a number!");
@@ -27,9 +45,11 @@ fn main() {
             }
         };
 
-        println!("You guessed: {}", guess);
+        let guess = Guess::new(value);
 
-        match guess.cmp(&secret_number) {
+        println!("You guessed: {}", guess.value());
+
+        match guess.value().cmp(&secret_number) {
             Ordering::Less => println!("Too small!"),
             Ordering::Greater => println!("Tool big!"),
             Ordering::Equal => {
