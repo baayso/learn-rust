@@ -27,12 +27,12 @@ pub struct Tweet {
 
 // NewsArticle 实现 Summary trait
 impl Summary for NewsArticle {
-    // 必须重写，因为Summary trait中该方法没默认实现
+    // 必须重写，因为Summary trait中该方法【没有】默认实现
     fn summarize_author(&self) -> String {
         format!("NewsArticle@{}", self.author)
     }
 
-    // 可选重写，因为Summary trait中该方法有默认实现
+    // 可选重写，因为Summary trait中该方法【有】默认实现
     fn summarize(&self) -> String {
         // todo!(); // 运行错误：not yet implemented
         format!(
@@ -47,7 +47,7 @@ impl Summary for NewsArticle {
 
 // Tweet 实现 Summary trait
 impl Summary for Tweet {
-    // 必须重写，因为Summary trait中该方法没默认实现
+    // 必须重写，因为Summary trait中该方法【没有】默认实现
     fn summarize_author(&self) -> String {
         format!("Tweet@{}", self.username)
     }

@@ -22,7 +22,7 @@ fn largest_2<T: PartialOrd + Clone>(list: &[T]) -> &T {
     // &item 是 T
     for item in list.iter() {
         // &largest 是 &&T
-        // largest  是 &&T
+        // largest  是 &T
         if item > largest {
             largest = item;
         }
