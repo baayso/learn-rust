@@ -1,19 +1,18 @@
+use minigrep::Argument;
+use std::error::Error;
+use std::{env, process};
+
+// cargo run searchstring example-filename.txt
 fn main() {
-    println!("Hello World!");
+    let args: Vec<String> = env::args().collect();
 
-    let val = 99u8; // byte
-    match val {
-        1 => println!("one"),
-        3 => println!("three"),
-        5 => println!("five"),
-        7 => println!("seven"),
-        _ => println!("{}", val),
-    }
+    let argument = Argument::new(&args).unwrap_or_else(|err| {
+        eprintln!("Problem parsing arguments: {}", err);
+        process::exit(1);
+    });
 
-    let val = Some(3u8);
-    if let Some(3) = val {
-        println!("three")
-    } else {
-        println!("others")
+    if let Err(e) = minigrep::run(argument) {
+        eprintln!("Application error: {}", e);
+        process::exit(1);
     }
 }
