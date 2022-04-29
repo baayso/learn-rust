@@ -1,12 +1,13 @@
-use minigrep::Argument;
-use std::error::Error;
+use std::env::Args;
 use std::{env, process};
+
+use minigrep::Argument;
 
 // cargo run searchstring example-filename.txt
 fn main() {
-    let args: Vec<String> = env::args().collect();
+    let args: Args = env::args();
 
-    let argument = Argument::new(&args).unwrap_or_else(|err| {
+    let argument = Argument::new(args).unwrap_or_else(|err| {
         eprintln!("Problem parsing arguments: {}", err);
         process::exit(1);
     });
